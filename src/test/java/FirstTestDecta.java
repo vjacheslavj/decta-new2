@@ -41,7 +41,7 @@ public class FirstTestDecta {
 
     private final By CREATED_INVOICE = By.xpath(".//div[@class = 's-wrapper']/div/div/div/div/a[1]");
 
-    //private final By EDIT_INV_INV_NAME = By.xpath(".//div[@class = 'formRow']/label/input[@value = 'Automation testing invoice']");
+        //private final By EDIT_INV_INV_NAME = By.xpath(".//div[@class = 'formRow']/label/input[@value = 'Automation testing invoice']");
     private final By DELETE_TEMPLATE = By.xpath(".//footer/div/nav/a[1]/span[2]");
     private final By POPUP_DELETE_TEMPLATE = By.xpath(".//div[contains(@class, 'ui-dialog ui-corner-all')]/footer/a[2]");
     private final By PRODUCTS_SECTION = By.xpath(".//ul/li[8]");
@@ -182,9 +182,9 @@ public class FirstTestDecta {
         popDeleteProductBtn.click();
 
 
-        //wait.until(ExpectedConditions.presenceOfElementLocated(INVOICE_SECTION));
-        //WebElement editInvoicePageInvoiceSection = driver.findElement(INVOICE_SECTION);
-        //editInvoicePageInvoiceSection.click();
+            //wait.until(ExpectedConditions.presenceOfElementLocated(INVOICE_SECTION));
+            //WebElement editInvoicePageInvoiceSection = driver.findElement(INVOICE_SECTION);
+            //editInvoicePageInvoiceSection.click();
 
         Assertions.assertEquals(addInvoicePageInvoiceName, editInvoicePageInvoiceName, "Wrong invoice name!");
         Assertions.assertEquals(addInvoicePageTotalPrice, editInvoicePageTotalPrice, "Wrong total price!");
@@ -192,6 +192,7 @@ public class FirstTestDecta {
 
         @AfterEach
         public void closeBrowser() {
+
         driver.close();
    }
 }
