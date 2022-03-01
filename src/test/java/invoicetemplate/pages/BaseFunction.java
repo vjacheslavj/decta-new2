@@ -26,8 +26,6 @@ public class BaseFunction {
 
         wait = new  WebDriverWait(driver, 10);
 
-
-
     }
 
     public void openPage(String url) {
@@ -44,6 +42,19 @@ public class BaseFunction {
         LOGGER.info("Clicking on element: " + locator);
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 
+    }
+
+    public void clickPlusEntrText(By locator, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);
+    }
+
+    public static void Sleep () {
+        try {
+            Thread.sleep(3000);
+        }
+        catch (Exception e) {
+
+        }
     }
 
 }

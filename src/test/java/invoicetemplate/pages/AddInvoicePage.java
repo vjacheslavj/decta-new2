@@ -17,6 +17,7 @@ public class AddInvoicePage {
 
 
     public AddInvoicePage(BaseFunction baseFunction) {
+
         this.baseFunction = baseFunction;
     }
 
@@ -32,7 +33,6 @@ public class AddInvoicePage {
         baseFunction.click(REQUEST_DETAILS_FIELD_EMAIL);
         LOGGER.info("Looking for Save Changes button to click on it");
         baseFunction.click(SAVE_CHANGES_BTN);
-
     }
 
 }
