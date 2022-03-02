@@ -25,12 +25,15 @@ public class AddInvoicePage {
         LOGGER.info("Filling up all the information and Saving Changes on ADD INVOICE PAGE");
 
         JavascriptExecutor scrollDown = (JavascriptExecutor) baseFunction.driver;
+
         LOGGER.info("Scrolling down ADD INVOICE page and Looking for Request details Field to click on it");
-        baseFunction.wait.until(ExpectedConditions.presenceOfElementLocated(REQUEST_DETAILS_FIELD));
+        baseFunction.waitingForPresenceOfElement(REQUEST_DETAILS_FIELD);
         scrollDown.executeScript("window.scrollBy(0, 400)");
         baseFunction.click(REQUEST_DETAILS_FIELD);
+
         LOGGER.info("Looking for request details Email to click on it");
         baseFunction.click(REQUEST_DETAILS_FIELD_EMAIL);
+
         LOGGER.info("Looking for Save Changes button to click on it");
         baseFunction.click(SAVE_CHANGES_BTN);
     }

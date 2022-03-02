@@ -18,6 +18,7 @@ public class TimelinePage {
     }
 
     public void goToInvoiceSection(){
+
         LOGGER.info("Looking for Invoice section to click on it on the TIMELINE PAGE");
         baseFunction.click(INVOICE_SECTION);
     }

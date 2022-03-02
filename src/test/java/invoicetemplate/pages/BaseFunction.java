@@ -44,6 +44,11 @@ public class BaseFunction {
 
     }
 
+    public void waitingForPresenceOfElement(By locator) {
+        LOGGER.info("Element present: " + locator);
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     public void clickPlusEntrText(By locator, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).sendKeys(text);
     }

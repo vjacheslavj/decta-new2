@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 
 public class InvoicePage {
     private final By ADD_INVOICE_BTN = By.xpath(".//header/nav/a");
+    private final By CREATED_INVOICE = By.xpath(".//div[@class = 's-wrapper']/div/div/div/div/a[1]");
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
@@ -16,8 +17,14 @@ public class InvoicePage {
     }
 
     public void clickAddInvoiceBtn() {
+
         LOGGER.info("Looking for Add invoice button to click on it on the INVOICE PAGE");
         baseFunction.click(ADD_INVOICE_BTN);
     }
 
+    public void clickOnCreatedInvoice() {
+
+        LOGGER.info("Looking for Created invoice to click on it on the INVOICE PAGE");
+        baseFunction.click(CREATED_INVOICE);
+    }
 }

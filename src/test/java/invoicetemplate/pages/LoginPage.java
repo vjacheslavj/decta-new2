@@ -25,8 +25,10 @@ public class LoginPage {
 
         LOGGER.info("Looking for Login field to click on it");
         baseFunction.clickPlusEntrText(LOGIN_FIELD, "vjaceslavs.jermakovs+22@decta.com");
+
         LOGGER.info("Looking for Password field to click on it");
         baseFunction.clickPlusEntrText(PASSWORD_FIELD, "O4calZ6spnW5oQJ2NW0B");
+
         LOGGER.info("Looking for Login button to click on it");
         baseFunction.click(LOG_IN);
     }

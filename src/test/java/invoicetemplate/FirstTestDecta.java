@@ -10,10 +10,6 @@ import org.openqa.selenium.WebDriver;
 
 public class FirstTestDecta {
 
-    private final By CREATED_INVOICE = By.xpath(".//div[@class = 's-wrapper']/div/div/div/div/a[1]");
-
-    private final By DELETE_TEMPLATE = By.xpath(".//footer/div/nav/a[1]/span[2]");
-    private final By POPUP_DELETE_TEMPLATE = By.xpath(".//div[contains(@class, 'ui-dialog ui-corner-all')]/footer/a[2]");
     private final By PRODUCTS_SECTION = By.xpath(".//ul/li[8]");
     private final By PRODUCTS_EDIT = By.xpath(".//div[contains(@class, 'products-list-cview')]/div[1]/div/footer");
     private final By DELETE_PRODUCTS = By.xpath(".//footer/div/nav/a/span[2]");
@@ -53,36 +49,12 @@ public class FirstTestDecta {
         AddProductPage addProductPage = new AddProductPage(baseFunction);
         addProductPage.EntSaveChangesOnAddProdPage();
 
-        AddInvoiceTemplatePage addInvoiceTemplatePage = new AddInvoiceTemplatePage(baseFunction);
+        AddEditInvoiceTemplatePage addInvoiceTemplatePage = new AddEditInvoiceTemplatePage(baseFunction);
         addInvoiceTemplatePage.AddSaveInvoiceTemplate();
 
+        invoicePage.clickOnCreatedInvoice();
 
-
-
-
-
-   //    LOGGER.info("Looking for Created invoice to click on it on the INVOICE PAGE");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(CREATED_INVOICE));
-   //    WebElement createdInvoice = driver.findElement(CREATED_INVOICE);
-   //    createdInvoice.click();
-
-
-   //    LOGGER.info("Looking for Invoice name to save it on the EDIT INVOICE page for the assertions");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(INVOICE_NAME_FIELD));
-   //    String editInvoicePageInvoiceName = driver.findElement(INVOICE_NAME_FIELD).getText();
-   //    LOGGER.info("Scrolling down the page and Looking for Invoice Total price then to save it for the Assertions");
-   //    scrollDown.executeScript("window.scrollBy(0, 500)");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(INVOICE_TOTAL_PRICE));
-   //    String editInvoicePageTotalPrice = driver.findElement(INVOICE_TOTAL_PRICE).getText();
-   //    LOGGER.info("Looking for Delete template button to click on it");
-   //    WebElement deleteTemplate = driver.findElement(DELETE_TEMPLATE);
-   //    deleteTemplate.click();
-   //    LOGGER.info("Looking for Yes button on the POPUP to click on it and confirm that we are sure that we want to delete Template");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(POPUP_DELETE_TEMPLATE));
-   //    WebElement popupDeleteInvoices = driver.findElement(POPUP_DELETE_TEMPLATE);
-   //    popupDeleteInvoices.click();
-   //    LOGGER.info("Gate need the time to save all changes so i am waiting fo 3 sec");
-   //    Thread.sleep(3000); // gate need time to save all changes
+        addInvoiceTemplatePage.DeleteInvoiceTemplate();
 
 
    //    LOGGER.info("Looking for Product section to click on it on the INVOICE PAGE");

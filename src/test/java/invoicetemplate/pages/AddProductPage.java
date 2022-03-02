@@ -28,23 +28,31 @@ public class AddProductPage {
 
         LOGGER.info("Looking for Product title field to click on it on the ADD PRODUCTS page");
         baseFunction.click(PRODUCT_TITLE_FIELD);
+
         LOGGER.info("Entering text - Automation testing to the Product title field");
         baseFunction.clickPlusEntrText(PRODUCT_TITLE_FIELD, "Automation testing");
+
         LOGGER.info("Looking for Price field to click on it");
         baseFunction.click(PRICE_FIELD);
+
         LOGGER.info("Entering amount - 1.00 to the Price field");
         baseFunction.clickPlusEntrText(PRICE_FIELD, "1.00");
+
         LOGGER.info("Looking for Qty field to click on it");
         baseFunction.click(QTY_FIELD);
+
         LOGGER.info("Entering amount - 1 to the Qty field");
         baseFunction.clickPlusEntrText(QTY_FIELD, "1");
+
         LOGGER.info("Looking for Discount field to click on it");
-        baseFunction.click(DISCOUNT_FIELD);
         baseFunction.clickPlusEntrText(DISCOUNT_FIELD, "0");
+
         LOGGER.info("Looking for Tax field to click on it");
         baseFunction.click(TAX_FIELD);
+
         LOGGER.info("Looking for VAT in the dropdown field to click on it");
         baseFunction.click(TAX_FIELD_VAT);
+
         LOGGER.info("Looking for Add Products button to click on it");
         baseFunction.click(ADD_PRODUCTS_BTN);
 
