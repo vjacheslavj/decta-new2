@@ -3,6 +3,7 @@ package invoicetemplate;
 import invoicetemplate.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,17 +11,10 @@ import org.openqa.selenium.WebDriver;
 
 public class FirstTestDecta {
 
-    private final By PRODUCTS_SECTION = By.xpath(".//ul/li[8]");
-    private final By PRODUCTS_EDIT = By.xpath(".//div[contains(@class, 'products-list-cview')]/div[1]/div/footer");
-    private final By DELETE_PRODUCTS = By.xpath(".//footer/div/nav/a/span[2]");
-    private final By POPUP_DELETE_PRODUCT = By.xpath(".//div[contains(@class, 'ui-dialog')]/footer/a[2]");
-
-
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 
     private WebDriver driver;
-
 
     @Test
     public void firstTest()  {
@@ -56,33 +50,23 @@ public class FirstTestDecta {
 
         addInvoiceTemplatePage.DeleteInvoiceTemplate();
 
+        invoicePage.clickOnProductsSection();
 
-   //    LOGGER.info("Looking for Product section to click on it on the INVOICE PAGE");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(PRODUCTS_SECTION));
-   //    WebElement productsSection = driver.findElement(PRODUCTS_SECTION);
-   //    productsSection.click();
+        ProductsPage productsPage = new ProductsPage(baseFunction);
+        productsPage.LookingClickEditProduct();
 
+        EditProductPage editProductPage = new EditProductPage(baseFunction);
+        editProductPage.LookingDeleteBtnClick();
 
-   //    LOGGER.info("Looking for Product Edit button to click on it on the PRODUCTS PAGE");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(PRODUCTS_EDIT));
-   //    WebElement productEdit = driver.findElement(PRODUCTS_EDIT);
-   //    productEdit.click();
+        String addInvoicePageInvoiceName = addInvoiceTemplatePage.getInvoiceNameAddPage();
+        float addInvoicePageTotalPrice = addInvoiceTemplatePage.getInvoiceTotalPriceAddPage();
+        String editInvoicePageInvoiceName = addInvoiceTemplatePage.getInvoiceNameEditPage();
+        float editInvoicePageTotalPrice = addInvoiceTemplatePage.getInvoiceTotalPriceEditPage();
 
-
-   //    LOGGER.info("Looking for Delete product button to click on it on the EDIT PRODUCTS PAGE");
-   //    wait.until(ExpectedConditions.presenceOfElementLocated(DELETE_PRODUCTS));
-   //    WebElement deleteProducts = driver.findElement(DELETE_PRODUCTS);
-   //    deleteProducts.click();
-   //    LOGGER.info("Looking for Yes button on the POPUP to click on it and confirm that we are sure that we want to delete Product");
-   //    wait.until(ExpectedConditions.elementToBeClickable(POPUP_DELETE_PRODUCT));
-   //    WebElement popDeleteProductBtn = driver.findElement(POPUP_DELETE_PRODUCT);
-   //    popDeleteProductBtn.click();
-
-
-   //    LOGGER.info("Compare Invoice name from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
-   //    Assertions.assertEquals(addInvoicePageInvoiceName, editInvoicePageInvoiceName, "Wrong invoice name!");
-   //    LOGGER.info("Compare Invoice Total price from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
-   //    Assertions.assertEquals(addInvoicePageTotalPrice, editInvoicePageTotalPrice, "Wrong total price!");
+       LOGGER.info("Compare Invoice name from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
+       Assertions.assertEquals(addInvoicePageInvoiceName, editInvoicePageInvoiceName, "Wrong invoice name!");
+       LOGGER.info("Compare Invoice Total price from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
+       Assertions.assertEquals(addInvoicePageTotalPrice, editInvoicePageTotalPrice, "Wrong total price!");
     }
 
   //    @AfterEach

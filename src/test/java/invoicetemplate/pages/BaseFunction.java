@@ -62,4 +62,9 @@ public class BaseFunction {
         }
     }
 
+    public String getText(By locator) {
+        LOGGER.info("Getting name of Invoice");
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).getText();
+    }
+
 }

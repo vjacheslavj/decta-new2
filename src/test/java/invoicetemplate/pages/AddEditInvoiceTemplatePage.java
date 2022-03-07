@@ -8,8 +8,10 @@ import org.openqa.selenium.JavascriptExecutor;
 public class AddEditInvoiceTemplatePage {
     private final By INVOICE_NAME_FIELD = By.xpath(".//div[@class = 'formRow']/label/input");
     private final By SAVE_TEMPLATE_BTN = By.xpath(".//footer/div/nav/a/span[2]");
-    private final By INVOICE_TOTAL_PRICE = By.xpath(".//div[@class = 's-flex s-text-size--l']/div[2]");
+    private final By ADD_INVOICE_PAGE_INVOICE_TOTAL_PRICE = By.xpath(".//div[@class = 's-flex s-text-size--l']/div[2]");
+    private final By EDIT_INVOICE_PAGE_INVOICE_TOTAL_PRICE = By.xpath(".//div[@class = 's-flex s-text-size--l']/div[2]");
     private final By ADD_INVOICE_PAGE_INVOICE_NAME = By.xpath(".//div/div/label/input");
+    private final By EDIT_INVOICE_PAGE_INVOICE_NAME = By.xpath(".//div/div/label/input");
     private final By INVOICE_SECTION = By.xpath(".//ul/li[3]");
     private final By DELETE_TEMPLATE = By.xpath(".//footer/div/nav/a[1]/span[2]");
     private final By POPUP_DELETE_TEMPLATE = By.xpath(".//div[contains(@class, 'ui-dialog ui-corner-all')]/footer/a[2]");
@@ -30,12 +32,15 @@ public class AddEditInvoiceTemplatePage {
         LOGGER.info("Looking for Invoice name field to click on it on the ADD INVOICE page and tp enter text");
         baseFunction.clickPlusEntrText(INVOICE_NAME_FIELD, "Automation testing invoice");
 
-        LOGGER.info("Looking for Invoice name then to save it for the Assertions");
-        String addInvoicePageInvoiceName = baseFunction.driver.findElement(ADD_INVOICE_PAGE_INVOICE_NAME).getText();
+        getInvoiceNameAddPage();
+        //LOGGER.info("Looking for Invoice name then to save it for the Assertions");
+        //String addInvoicePageInvoiceName = baseFunction.driver.findElement(ADD_INVOICE_PAGE_INVOICE_NAME).getText();
 
-        LOGGER.info("Scrolling down the page and Looking for Invoice Total price then to save it for the Assertions");
+        LOGGER.info("Scrolling down the page");
         scrollDown.executeScript("window.scrollBy(0, 400)");
-        String addInvoicePageTotalPrice = baseFunction.driver.findElement(INVOICE_TOTAL_PRICE).getText();
+
+        getInvoiceTotalPriceAddPage();
+        //String addInvoicePageTotalPrice = baseFunction.driver.findElement(INVOICE_TOTAL_PRICE).getText();
 
         LOGGER.info("Looking for Save Template button to click on it");
         baseFunction.click(SAVE_TEMPLATE_BTN);
@@ -51,14 +56,17 @@ public class AddEditInvoiceTemplatePage {
 
         JavascriptExecutor scrollDown = (JavascriptExecutor) baseFunction.driver;
 
-        LOGGER.info("Looking for Invoice name to save it on the EDIT INVOICE page for the assertions");
-        baseFunction.waitingForPresenceOfElement(INVOICE_NAME_FIELD);
-        String editInvoicePageInvoiceName = baseFunction.driver.findElement(INVOICE_NAME_FIELD).getText();
+        getInvoiceNameEditPage();
+        //LOGGER.info("Looking for Invoice name to save it on the EDIT INVOICE page for the assertions");
+        //baseFunction.waitingForPresenceOfElement(INVOICE_NAME_FIELD);
+        //String editInvoicePageInvoiceName = baseFunction.driver.findElement(INVOICE_NAME_FIELD).getText();
 
-        LOGGER.info("Scrolling down the page and Looking for Invoice Total price then to save it for the Assertions");
+        LOGGER.info("Scrolling down the page");
         scrollDown.executeScript("window.scrollBy(0, 500)");
-        baseFunction.waitingForPresenceOfElement(INVOICE_TOTAL_PRICE);
-        String editInvoicePageTotalPrice = baseFunction.driver.findElement(INVOICE_TOTAL_PRICE).getText();
+
+        getInvoiceTotalPriceEditPage();
+        //baseFunction.waitingForPresenceOfElement(INVOICE_TOTAL_PRICE);
+        //String editInvoicePageTotalPrice = baseFunction.driver.findElement(INVOICE_TOTAL_PRICE).getText();
 
         LOGGER.info("Looking for Delete template button to click on it");
         baseFunction.click(DELETE_TEMPLATE);
@@ -70,4 +78,29 @@ public class AddEditInvoiceTemplatePage {
         baseFunction.Sleep(); // gate need time to save all changes
     }
 
+    public String getInvoiceNameAddPage() {
+        LOGGER.info("Looking for Invoice name to save it on the ADD INVOICE page for the assertions");
+        return baseFunction.getText(ADD_INVOICE_PAGE_INVOICE_NAME);
+    }
+
+    public float getInvoiceTotalPriceAddPage() {
+        LOGGER.info("Looking for Invoice Total price on the ADD INVOICE page then to save it for the Assertions");
+        String invoiceTotalPriceToParse = baseFunction.getText(ADD_INVOICE_PAGE_INVOICE_TOTAL_PRICE);
+        return Float.parseFloat(invoiceTotalPriceToParse);
+        //return Integer.parseInt(invoiceTotalPriceToParse);
+
+    }
+
+    public String getInvoiceNameEditPage() {
+        LOGGER.info("Looking for Invoice name to save it on the EDIT INVOICE page for the assertions");
+        return baseFunction.getText(EDIT_INVOICE_PAGE_INVOICE_NAME);
+    }
+
+    public float getInvoiceTotalPriceEditPage() {
+        LOGGER.info("Looking for Invoice Total price then to save it for the Assertions");
+        String invoiceTotalPriceToParse = baseFunction.getText(EDIT_INVOICE_PAGE_INVOICE_TOTAL_PRICE);
+        return Float.parseFloat(invoiceTotalPriceToParse);
+       // return Integer.parseInt(invoiceTotalPriceToParse);
+
+    }
 }
