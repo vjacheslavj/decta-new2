@@ -3,10 +3,13 @@ package invoicetemplate;
 import invoicetemplate.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class FirstTestDecta {
@@ -17,16 +20,12 @@ public class FirstTestDecta {
     private WebDriver driver;
 
     @Test
-    public void firstTest()  {
+    public void firstTest() {
         LOGGER.info("This test is creating Invoice template. Checking Invoice Name with Invoice total price on Add Invoice page and Edit Invoice page");
 
         BaseFunction baseFunction = new BaseFunction();
         baseFunction.openPage("gate.dcdev.dvte.ch/merchants/en/login");
 
-
-        // WebDriverWait wait = new WebDriverWait(driver, 10);
-        // JavascriptExecutor scrollDown = (JavascriptExecutor) driver;
-//
 
         LoginPage loginPage = new LoginPage(baseFunction);
         loginPage.loginGate();
@@ -44,11 +43,19 @@ public class FirstTestDecta {
         addProductPage.EntSaveChangesOnAddProdPage();
 
         AddEditInvoiceTemplatePage addInvoiceTemplatePage = new AddEditInvoiceTemplatePage(baseFunction);
-        addInvoiceTemplatePage.AddSaveInvoiceTemplate();
+        addInvoiceTemplatePage.lookingForInvFieldEntrNameAddPage();
+        String addInvoicePageInvoiceName = addInvoiceTemplatePage.getInvoiceNameAddPage();
+        addInvoiceTemplatePage.scrollDownAddPage();
+        float addInvoicePageTotalPrice = addInvoiceTemplatePage.getInvoiceTotalPriceAddPage();
+        addInvoiceTemplatePage.saveBtn();
+        addInvoiceTemplatePage.sleepRedirectToInvSection();
 
         invoicePage.clickOnCreatedInvoice();
 
-        addInvoiceTemplatePage.DeleteInvoiceTemplate();
+        String editInvoicePageInvoiceName = addInvoiceTemplatePage.getInvoiceNameEditPage();
+        addInvoiceTemplatePage.scrollDownEditPage();
+        float editInvoicePageTotalPrice = addInvoiceTemplatePage.getInvoiceTotalPriceEditPage();
+        addInvoiceTemplatePage.lookingForDeleteBtn();
 
         invoicePage.clickOnProductsSection();
 
@@ -58,22 +65,17 @@ public class FirstTestDecta {
         EditProductPage editProductPage = new EditProductPage(baseFunction);
         editProductPage.LookingDeleteBtnClick();
 
-        String addInvoicePageInvoiceName = addInvoiceTemplatePage.getInvoiceNameAddPage();
-        float addInvoicePageTotalPrice = addInvoiceTemplatePage.getInvoiceTotalPriceAddPage();
-        String editInvoicePageInvoiceName = addInvoiceTemplatePage.getInvoiceNameEditPage();
-        float editInvoicePageTotalPrice = addInvoiceTemplatePage.getInvoiceTotalPriceEditPage();
 
-       LOGGER.info("Compare Invoice name from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
-       Assertions.assertEquals(addInvoicePageInvoiceName, editInvoicePageInvoiceName, "Wrong invoice name!");
-       LOGGER.info("Compare Invoice Total price from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
-       Assertions.assertEquals(addInvoicePageTotalPrice, editInvoicePageTotalPrice, "Wrong total price!");
+        LOGGER.info("Compare Invoice name from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
+        assertEquals(addInvoicePageInvoiceName, editInvoicePageInvoiceName, "Wrong invoice name!");
+        LOGGER.info("Compare Invoice Total price from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
+        assertEquals(addInvoicePageTotalPrice, editInvoicePageTotalPrice, "Wrong total price!");
     }
 
-  //    @AfterEach
-  //    public void closeBrowser() {
-
-  //    driver.close();
-  //
+  // @AfterEach
+  // public void closeBrowser() {
+  //     driver.close();
+  // }
 }
 
 //  .//*[contains(@name, 'username')]

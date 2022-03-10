@@ -24,7 +24,7 @@ public class LoginPage {
         LOGGER.info("Login to the Gate page");
 
         LOGGER.info("Looking for Login field to click on it");
-        baseFunction.clickPlusEntrText(LOGIN_FIELD, "vjaceslavs.jermakovs+22@decta.com");
+        baseFunction.clickPlusEntrText(LOGIN_FIELD, "vjaceslavs.jermakovs+9988@decta.com");
 
         LOGGER.info("Looking for Password field to click on it");
         baseFunction.clickPlusEntrText(PASSWORD_FIELD, "O4calZ6spnW5oQJ2NW0B");
