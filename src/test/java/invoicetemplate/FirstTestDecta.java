@@ -3,11 +3,7 @@ package invoicetemplate;
 import invoicetemplate.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,9 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FirstTestDecta {
 
     private final Logger LOGGER = LogManager.getLogger(this.getClass());
-
-
-    private WebDriver driver;
 
     @Test
     public void firstTest() {
@@ -70,12 +63,8 @@ public class FirstTestDecta {
         assertEquals(addInvoicePageInvoiceName, editInvoicePageInvoiceName, "Wrong invoice name!");
         LOGGER.info("Compare Invoice Total price from the ADD INVOICE PAGE and EDIT INVOICE PAGE");
         assertEquals(addInvoicePageTotalPrice, editInvoicePageTotalPrice, "Wrong total price!");
+            baseFunction.closeBrowser();
     }
-
-  // @AfterEach
-  // public void closeBrowser() {
-  //     driver.close();
-  // }
 }
 
 //  .//*[contains(@name, 'username')]
